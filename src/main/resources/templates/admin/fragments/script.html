@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-TW">
+<div th:fragment="main">
+    <!-- jQuery -->
+    <script th:src="@{/admin/vendor/jquery/jquery.min.js}" src="/static/admin/vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script th:src="@{/admin/vendor/bootstrap/js/bootstrap.min.js}"
+            src="/static/admin/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script th:src="@{/admin/vendor/metisMenu/metisMenu.min.js}"
+            src="/static/admin/vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script th:src="@{/admin/dist/js/sb-admin-2.js}" src="/static/admin/dist/js/sb-admin-2.js"></script>
+</div>
+
+<div th:fragment="morris">
+    <!-- Morris Charts JavaScript -->
+    <script th:src="@{/admin/vendor/raphael/raphael.min.js}" src="/static/admin/vendor/raphael/raphael.min.js"></script>
+    <script th:src="@{/admin/vendor/morrisjs/morris.min.js}" src="/static/admin/vendor/morrisjs/morris.min.js"></script>
+    <script th:src="@{/admin/data/morris-data.js}" src="/static/admin/data/morris-data.js"></script>
+</div>
+
+<div th:fragment="datatables">
+    <!-- DataTables JavaScript -->
+    <script th:src="@{/admin/vendor/datatables/js/jquery.dataTables.min.js}"
+            src="/static/admin/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script th:src="@{/admin/vendor/datatables-plugins/dataTables.bootstrap.min.js}"
+            src="/static/admin/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+</div>
+
+<div th:fragment="summernote">
+    <!-- Summernote JavaScript-->
+    <script th:src="@{/admin/summernote/summernote.js}" src="/static/admin/summernote/summernote.js"></script>
+    <script th:src="@{/admin/summernote/lang/summernote-zh-TW.js}"
+            src="/static/admin/summernote/lang/summernote-zh-TW.js"></script>
+</div>
+
+<div th:fragment="datetimepicker">
+    <script th:src="@{/admin/datetimepicker/js/moment.min.js}"
+            src="/static/admin/datetimepicker/js/moment.min.js"></script>
+    <script th:src="@{/admin/datetimepicker/js/zh-tw.js}" src="/static/admin/datetimepicker/js/zh-tw.js"></script>
+    <script th:src="@{/admin/datetimepicker/js/bootstrap-datetimepicker.min.js}"
+            src="/static/admin/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+</div>
+
+<div th:fragment="fileinput">
+    <!-- the main fileinput plugin file -->
+    <script th:src="@{/admin/js/fileinput.js}" src="/static/admin/js/fileinput.js"></script>
+    <script th:src="@{/admin/js/locales/zh-TW.js}" src="/static/admin/js/locales/zh-TW.js"></script>
+</div>
+
+</html>

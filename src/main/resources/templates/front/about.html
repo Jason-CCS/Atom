@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-TW">
+
+<head th:insert="front/fragments/head::head">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav th:replace="front/fragments/nav::nav">
+</nav>
+
+<!-- Page Header -->
+<header class="masthead" th:style="'background-image: url(' + @{/front/img/about-bg.jpg} + ')'"
+        style="background-image: url('/static/front/img/about-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>About Me</h1>
+                    <span class="subheading">This is what I do.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <p><strong>I am a freelancer, software developer</strong>. Had experience on handling BigData eco-system,
+                such as Hadoop, HBase, Zookeeper, Redis, etc. And other Apache software experiences on Solr, Maven,
+                Kafka, and so many on. Basically, I am a full-stack website developer, or even a DevOps.
+
+            <p class="text-info">
+                Currently, to be cooperated with me is website building, especially those rather
+                complicate system. Experienced on Java, Javascript, PHP, SQL database, No-SQL database.
+                Backend Java using - Jersey, Tomcat, Jetty, MSSQL; Or PHP using - CodeIgniter, AMP. Frond-end JS
+                using
+                jQuery, Bootstrap, Hi-chart.
+            </p>
+
+            <p>I am major in Image Processing and fascinated about topics like AI, and SNA in M.S.
+                Look forward to being a LOHAS high-techie engineer or yuppie scientist. Passionate about environment
+                protection, eco-friendly technology, happier life way for human.
+                Still on the way to work as happy as God.</p>
+
+            <p>Future interesting topic in my pocket is Laravel, Python, node.js, Raspberry pi, pattern recognition,
+                machine learning. </p>
+
+            <p>Cheers, mates!</p>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- Footer -->
+<footer th:replace="front/fragments/footer::footer">
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/front/vendor/jquery/jquery.min.js}" src="/static/front/vendor/jquery/jquery.min.js"></script>
+<script th:src="@{/front/vendor/bootstrap/js/bootstrap.bundle.min.js}"
+        src="/static/front/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script th:src="@{/front/js/clean-blog.min.js}" src="/static/front/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>

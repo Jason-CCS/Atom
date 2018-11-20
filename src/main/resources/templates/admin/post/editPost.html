@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-TW">
+
+<head th:replace="admin/fragments/head-summernote::head">
+</head>
+<body>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav th:replace="admin/fragments/nav::nav"></nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header inBlock">編輯文章</h1>
+                    <!--<a class="btn btn-default floatR pageH-margin" href="<?= Dream::$INDEX_URI ?>">todo:返回列表</a>-->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            文章資料
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" method="post" th:action="@{/admin/ep/{id}(id=${post.id})}" th:object="${post}">
+                                <!--<div class="text-danger"><?php echo validation_errors(); ?></div>-->
+                                <div class="form-group col-lg-6">
+                                    <label>設定日期</label>
+                                    <div class="input-group date col-lg-6" id="datetimepicker">
+                                        <input type="text" th:name="updateTime" th:value="${updateTime}" class="form-control"
+                                               placeholder="不填則為當前系統時間">
+                                        <span class="input-group-addon" style="cursor: pointer">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label>文章標題</label>
+                                    <!-- todo: 如何取得字數限制 -->
+                                    <input class="form-control" required type="text"
+                                           placeholder="字數限制 (256)" th:field="*{title}"
+                                           maxlength="256">
+                                </div>
+                                <!--<div class="form-group col-lg-12">
+                                    <label>作者</label>
+                                    <input class="form-control"
+                                           placeholder="字數限制 (256)"
+                                           th:field="*{author.getName()}"
+                                           value="<?= set_value(Post_model::$AUTHOR) ?>"
+                                           maxlength="<?= ($this->language == ENGLISH) ? Dream::$AUTHOR_LENGTH_EN : Dream::$AUTHOR_LENGTH ?>">
+                                </div>-->
+                                <!--<div class="form-group col-lg-12">
+                                    <label>上傳前台顯示影像</label>
+                                    <input id="fileinput" name="fileinput" type="file" class="file-loading">
+                                </div>-->
+                                <!--<div class="hidden">
+                                    <div id="hidden-input"></div>
+                                </div>-->
+                                <div class="form-group col-lg-12" style="margin-bottom: 0px">
+                                    <label>內文</label>
+                                    <div id="summernote"></div>
+                                    <input id="summernote-body" class="form-control" type="text"
+                                           th:field="*{body}"
+                                           style="display: none">
+                                </div>
+                                <!--<?php if (isset($category)): ?>
+                                <div class="form-group col-lg-6">
+                                    <label>文章分類</label>
+                                    <select id="category" class="form-control" name="category">
+                                        <option disabled selected value>請選擇</option>
+                                        <?php foreach ($category as $key => $value): ?>
+                                        <option
+                                                value="<?= $value['category_id'] ?>"><?= $value['name'] ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <?php endif; ?>-->
+                                <!--<div class="form-group col-lg-6">
+                                    <input type="checkbox" name="<?= Post_model::$IS_NEW ?>"
+                                    <?php $is_new = set_value(Post_model::$IS_NEW);
+                                        if ($is_new == 1)
+                                            echo 'checked';
+                                        ?> value="1">
+                                    &nbsp;是否加上new標籤
+                                </div>-->
+                                <div class="col-lg-12">
+                                    <hr>
+                                </div>
+                                <div class="form-group col-lg-12 text-center">
+                                    <!--<button type="submit" class="btn btn-success" name="submitType" value="preview"
+                                            onclick="submitPost()" style="width: 80px;"><?= PREVIEW ?>
+                                    </button>-->
+                                    <!--<button type="submit" class="btn btn-info" name="submitType" value="save"
+                                            onclick="submitPost()" style="width: 80px;"><?= SAVE ?>
+                                    </button>-->
+                                    <button type="submit" class="btn btn-primary" name="submitType" value="publish"
+                                            onclick="submitPost()" style="width: 80px;">發佈
+                                    </button>
+                                    <!--<a type="button" class="btn btn-danger" href="<?= Dream::$INDEX_URI ?>"
+                                       style="width: 80px;">
+                                        <?= CANCEL ?>
+                                    </a>-->
+                                    <a th:href="@{/admin/lp}" class="btn btn-danger" style="width: 80px;">取消
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-11 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<div th:replace="admin/fragments/script::main"></div>
+<div th:replace="admin/fragments/script::summernote"></div>
+<div th:replace="admin/fragments/script::datetimepicker"></div>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        // datetimepicker
+        $('#datetimepicker').datetimepicker({
+            format: "YYYY/MM/DD",
+            defaultDate: new Date(),
+            locale: "zh-tw"
+        });
+        // summernote
+        $('#summernote').summernote({
+            lang: 'zh-TW',
+            height: 500,                 // set editor height
+            placeholder: 'A person who never made a mistake never tried anything new. Albert Einstein.',
+            callbacks: {
+                onImageUpload: function (files) {
+                    var $editor = $(this);
+                    // html5 的物件，可以動態增加表單資料，name:value 配對
+                    var data = new FormData();
+                    // 增加一個字段 image 值是待上傳文件的內容
+                    data.append('image', files[0]);
+
+                    $.ajax({         // 上傳文件到服務器端
+                        url: /*[[@{/admin/image/upload}]]*/ '/image/upload',
+                        enctype: 'multipart/form-data', //將資料加密傳輸 檔案上傳一定要有的屬性
+                        method: 'POST',
+                        data: data,
+                        processData: false,      // 這兩個比較關鍵，禁止處理表單數據
+                        contentType: false,      //
+                        success: function (response) {
+                            if (response.msg == 'fail') {
+                                alert('上傳失敗，通知管理員');
+                                return;
+                            }
+                            if (response.msg == 'exist') {
+                                alert('您上傳的檔名已存在，請確認是否為您上傳的圖，如果不是，請更改檔名。');
+                                // 插入图片
+                                $editor.summernote('insertImage', response.url);
+                                return;
+                            }
+                            if (response.msg == 'success') {
+                                // 插入图片
+                                $editor.summernote('insertImage', response.url);
+                            }
+                        }
+                    });
+                },
+                onMediaDelete: function ($target, editor, $editable) {
+                    if (!$target[0]) {
+                        return;
+                    }
+                    var filename = $target[0].src.split('/')[$target[0].src.split('/').length - 1];
+
+                    // remove element in editor
+                    $target.remove();
+
+                    $.ajax({
+                        // 下面的註解是thymeleaf語法
+                        url: /*[[@{/admin/image/delete}]]*/'/image/delete/',
+                        method: 'POST',
+                        data: {filename: filename},
+                        success: function (response, r2) {
+                            if (response.msg == 'success') {
+                                alert("刪除成功");
+                            } else {
+                                alert("刪除失敗，請聯絡管理員")
+                            }
+                        },
+                        error: function (response, r2) {
+                            alert("刪除失敗，請聯絡管理員")
+                        }
+                    });
+                }
+            }
+        });
+        // 網頁重新載入後，會將hidden summernote-body的資料，載入到真正的summernote編輯框中
+        $('#summernote').summernote('code', $('#summernote-body').val());
+    });
+
+    /**
+     * before submit a new post
+     */
+    function submitPost() {
+        var postBody = $('#summernote').summernote('code');
+        if (postBody.match('<p><br></p>')) {
+            postBody = '';
+        }
+        $('#summernote-body').val(postBody);
+    }
+</script>
+
+</body>
+</html>

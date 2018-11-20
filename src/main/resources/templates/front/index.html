@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="zh-TW">
+
+<head th:insert="front/fragments/head::head">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<!-- Navigation -->
+<nav th:replace="front/fragments/nav::nav">
+</nav>
+
+<!-- Page Header -->
+<header class="masthead" th:style="'background-image: url(' + @{/front/img/home-bg.jpg} + ')'"
+        style="background-image: url('/static/front/img/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h1>Clean Blog</h1>
+                    <span class="subheading">A Freelancer to Software Dev/Egnr/Eco-Friendly Co-working</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview" th:each="post:${postList}">
+                <a th:href="@{/post/{id}(id=${post.id})}" href="/templates/front/post.html">
+                    <h2 class="post-title" th:text="${post.title}">
+                        Man must explore, and this is exploration at its greatest
+                    </h2>
+                    <h3 class="post-subtitle" th:text="${#strings.abbreviate(post.body,150)}">
+                        Problems look mighty small from 150 miles up
+                    </h3>
+                </a>
+                <p class="post-meta">Posted by
+                    <a th:href="@{/user/{id}(id=${post.author.id})}" href="#" th:text="${post.author.name}">Start
+                        Bootstrap</a>
+                    <span th:text="${'on '+ #dates.format(post.updateTime, 'MMMM dd, yyyy')}">on September 24, 2018</span></p>
+                <hr>
+            </div>
+
+            <!-- Pager -->
+            <div class="clearfix">
+                <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<!-- Footer -->
+<footer th:replace="front/fragments/footer::footer">
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script th:src="@{/front/vendor/jquery/jquery.min.js}" src="/static/front/vendor/jquery/jquery.min.js"></script>
+<script th:src="@{/front/vendor/bootstrap/js/bootstrap.bundle.min.js}"
+        src="/static/front/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom scripts for this template -->
+<script th:src="@{/front/js/clean-blog.min.js}" src="/static/front/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
