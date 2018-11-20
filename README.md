@@ -1,2 +1,2 @@
 # Atom
-This is demo prj.
+This is a demo prj.
