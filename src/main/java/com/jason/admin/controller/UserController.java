@@ -1,7 +1,7 @@
-package com.jason.atom.admin.controller;
+package com.jason.admin.controller;
 
-import com.jason.atom.admin.model.User;
-import com.jason.atom.admin.repository.UserRepository;
+import com.jason.admin.repository.UserRepository;
+import com.jason.admin.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,22 +17,6 @@ import java.util.List;
 public class UserController {
     @Autowired
     UserRepository userRepository;
-
-    @RequestMapping("/login")
-    public String login() {
-        return "admin/user/login";
-    }
-
-    @RequestMapping("/validateUser")
-    public String validateUser(String email, String password) {
-        User result = userRepository.findUserByEmailAndAndPassword(email, password);
-        if (result != null) {
-            return "redirect:/admin";
-        } else {
-            // todo: login error
-            return "redirect:/admin/login";
-        }
-    }
 
     // create
     @GetMapping(value = "/cu")

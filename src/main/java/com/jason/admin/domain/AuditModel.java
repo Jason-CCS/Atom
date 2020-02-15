@@ -1,4 +1,4 @@
-package com.jason.atom.admin.model;
+package com.jason.admin.domain;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -10,7 +10,7 @@ import java.util.Date;
 
 
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class) // todo: 查看EntityListeners的用途是什麼
 public abstract class AuditModel implements Serializable {
 
     @Temporal(TemporalType.DATE)

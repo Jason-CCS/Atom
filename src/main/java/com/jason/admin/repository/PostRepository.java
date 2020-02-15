@@ -1,6 +1,6 @@
-package com.jason.atom.admin.repository;
+package com.jason.admin.repository;
 
-import com.jason.atom.admin.model.Post;
+import com.jason.admin.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

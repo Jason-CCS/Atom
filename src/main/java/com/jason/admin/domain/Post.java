@@ -1,4 +1,4 @@
-package com.jason.atom.admin.model;
+package com.jason.admin.domain;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -8,6 +8,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Post extends AuditModel {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_generator")
     @SequenceGenerator(name = "post_generator", sequenceName = "post_seq")

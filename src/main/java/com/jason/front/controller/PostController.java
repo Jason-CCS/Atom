@@ -1,7 +1,7 @@
-package com.jason.atom.front.controller;
+package com.jason.front.controller;
 
-import com.jason.atom.admin.model.Post;
-import com.jason.atom.admin.repository.PostRepository;
+import com.jason.admin.domain.Post;
+import com.jason.admin.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

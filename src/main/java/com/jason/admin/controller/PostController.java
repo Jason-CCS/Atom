@@ -1,9 +1,9 @@
-package com.jason.atom.admin.controller;
+package com.jason.admin.controller;
 
-import com.jason.atom.admin.model.Post;
-import com.jason.atom.admin.model.User;
-import com.jason.atom.admin.repository.PostRepository;
-import com.jason.atom.admin.repository.UserRepository;
+import com.jason.admin.domain.Post;
+import com.jason.admin.domain.User;
+import com.jason.admin.repository.PostRepository;
+import com.jason.admin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
